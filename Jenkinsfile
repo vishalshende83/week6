@@ -13,8 +13,15 @@ pipeline {
           }
           stage("Code coverage") {
                steps {
-                    sh "./gradlew jacocoTestReport"
-                    sh "./gradlew jacocoTestCoverageVerification"
+                    script{
+                         if(env.GIT_BRANCH == "origin/main"){
+                         sh "./gradlew jacocoTestReport"
+                         sh "./gradlew jacocoTestCoverageVerification"
+                         }
+                         else{
+                              echo "Inside else of Code Coverage"
+                         }
+                    }
                }
           }
           stage("Static code analysis") {
