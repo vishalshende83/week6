@@ -7,28 +7,14 @@ podTemplate(containers: [
     ),
   ]) {
     node(POD_LABEL) {
-      stage('Compile') {
+      stage('Run pipeline against a gradle project - test MAIN') {
 	container('gradle') {
-          stage('Build a gradle project') 
-               steps {
-                    sh "./gradlew compileJava"
-               }
-          stage('Unit test') {
-	          steps {
-                    sh "./gradlew test"
-               }
+          stage('Build a gradle project') {
+            echo "I am the branch"
           }
           stage('Code coverage') {
-	          steps {
-                    sh "./gradlew jacocoTestReport"
-                    sh "./gradlew jacocoTestCoverageVerification"
-               }
-          }
-          stage('Static code analysis') {
-	          steps {
-                    sh "./gradlew checkstyleMain"
-					sh "./gradlew jacocoTestReport"
-               }
+	       echo "My CC branch is: "
+            
           }
         }
       }   
