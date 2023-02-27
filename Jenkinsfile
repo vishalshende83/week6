@@ -13,6 +13,7 @@ pipeline {
           }
           stage("Code coverage") {
                steps {
+                    sh 'printenv'
                     sh "./gradlew jacocoTestReport"
                     sh "./gradlew jacocoTestCoverageVerification"
                }
