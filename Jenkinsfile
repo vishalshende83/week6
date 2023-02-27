@@ -15,11 +15,12 @@ pipeline {
                steps {
                     script{
                          if(env.GIT_BRANCH == "origin/main"){
+                          echo "Inside - Code Coverage.Branch is : ${env.GIT_BRANCH}"
                          sh "./gradlew jacocoTestReport"
                          sh "./gradlew jacocoTestCoverageVerification"
                          }
                          else{
-                              echo "Inside else of Code Coverage"
+                              echo "Skipping Stage - Code Coverage"
                          }
                     }
                }
