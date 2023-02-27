@@ -12,10 +12,8 @@ pipeline {
                }
           }
           stage("Code coverage") {
-               if (env.GIT_BRANCH == "origin/main") {
                steps {
-                    sh 'printenv'
-                    
+                         sh 'printenv'
                          sh "./gradlew jacocoTestReport"
                          sh "./gradlew jacocoTestCoverageVerification"
                     }
