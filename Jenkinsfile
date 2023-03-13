@@ -37,11 +37,9 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
     stage('Build a gradle project') {
-      git branch: 'main', url: 'https://github.com/vishalshende83/week6.git'
       container('gradle') {
         stage('Build a gradle project') {
           sh '''
-          cd /home/jenkins/agent/workspace/week7_01
           chmod +x gradlew
           ./gradlew build
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
